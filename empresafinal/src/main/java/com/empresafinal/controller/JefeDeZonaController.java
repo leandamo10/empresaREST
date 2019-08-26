@@ -28,7 +28,7 @@ public class JefeDeZonaController {
         if (empleadoService.mostrarEmpleado(jefeDeZona.getDni())== null) {
             jefeDeZona = jefeDeZonaService.crearJefeDeZona(jefeDeZona);
             if (jefeDeZona == null) {
-                return new ResponseEntity<>(jefeDeZona, HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             } else {
                 return new ResponseEntity<>(jefeDeZona, HttpStatus.CREATED);
             }

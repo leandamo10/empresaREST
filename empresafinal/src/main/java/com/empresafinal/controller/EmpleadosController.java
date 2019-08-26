@@ -20,9 +20,9 @@ public class EmpleadosController {
     public ResponseEntity<Empleado> mostrar(@PathVariable String dni) {
         Empleado empleado = empleadoService.mostrarEmpleado(dni);
         if (empleado == null) {
-            return new ResponseEntity<Empleado>(empleado, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<Empleado>(empleado, HttpStatus.OK);
+            return new ResponseEntity<>(empleado, HttpStatus.OK);
         }
     }
 
@@ -37,7 +37,7 @@ public class EmpleadosController {
     public ResponseEntity<Empleado> borrar(@PathVariable String dni) {
         Empleado empleado = empleadoService.mostrarEmpleado(dni);
         if (empleado == null) {
-            return new ResponseEntity<>(empleado, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             empleadoService.borrarEmpleado(dni);
             return new ResponseEntity<>(empleado, HttpStatus.OK);

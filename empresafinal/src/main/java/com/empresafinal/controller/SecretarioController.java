@@ -27,7 +27,7 @@ public class SecretarioController {
         if (empleadoService.mostrarEmpleado(secretario.getDni())== null) {
             secretario = secretarioService.crearSecretario(secretario);
             if (secretario == null) {
-                return new ResponseEntity<>(secretario, HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             } else {
                 return new ResponseEntity<>(secretario, HttpStatus.CREATED);
             }
