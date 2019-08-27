@@ -10,25 +10,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("v1/api")
+@RequestMapping("v1/api/empleados")
 public class EmpleadosController {
 
     @Autowired
     private EmpleadoService empleadoService;
 
-    @GetMapping("/empleados/{dni}")
+    @GetMapping("/{dni}")
     public ResponseEntity<Empleado> mostrar(@PathVariable String dni) {
-        return empleadoService.mostrar(dni);
+        return empleadoService.buscar(dni);
     }
 
-    @GetMapping("/empleados")
+    @GetMapping("/")
     @ResponseStatus(HttpStatus.OK)
     public Collection<Empleado> list() {
         return empleadoService.getEmpleados();
     }
 
 
-    @DeleteMapping(value = "/empleados/{dni}")
+    @DeleteMapping("/{dni}")
     public ResponseEntity<Empleado> borrar(@PathVariable String dni) {
         return empleadoService.borrarEmpleado(dni);
     }

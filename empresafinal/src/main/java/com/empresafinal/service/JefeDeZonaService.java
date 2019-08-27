@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.sql.PseudoColumnUsage;
+
 @Service
 public class JefeDeZonaService {
 
@@ -21,9 +23,10 @@ public class JefeDeZonaService {
         if (empleadoService.mostrarEmpleado(jefeDeZona.getDni()) == null) {
             if (jefeDeZona.getCargo().equals(CargoEnum.JEFE_DE_ZONA)) {
                 JefeDeZona jefeDeZona1 = new JefeDeZona(jefeDeZona.getNombre(), jefeDeZona.getApellido(), jefeDeZona.getDni(),
-                        jefeDeZona.getTelefono(), jefeDeZona.getSueldo(), jefeDeZona.getCargo(), jefeDeZona.getDespacho(), jefeDeZona.getSecretario());
+                        jefeDeZona.getTelefono(), jefeDeZona.getSueldo(), jefeDeZona.getCargo(), jefeDeZona.getDespacho());
+                jefeDeZona1.setSecretario(empleadoRepository.buscarEmpleado(jefeDeZona.getSecretarioDni()));
                 empleadoRepository.agregarEmpleado(jefeDeZona1);
-                return new ResponseEntity<>(jefeDeZona, HttpStatus.CREATED);
+                return new ResponseEntity<>(jefeDeZona1, HttpStatus.CREATED);
             } else {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
@@ -40,6 +43,7 @@ public class JefeDeZonaService {
         } else {
             if (jefeDeZona.getCargo().equals(CargoEnum.JEFE_DE_ZONA)) {
                 empleadoRepository.modificar(dni, jefeDeZona);
+                jefeDeZona.setSecretario(empleadoRepository.buscarEmpleado(jefeDeZona.getSecretarioDni()));
                 return new ResponseEntity<>(jefeDeZona, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.METHOD_NOT_ALLOWED);

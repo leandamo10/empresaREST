@@ -1,5 +1,8 @@
 package com.empresafinal.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Vendedor extends Empleado {
 
     private double comisiones;

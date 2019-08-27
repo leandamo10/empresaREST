@@ -12,10 +12,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("v1/api/empleados")
+@RequestMapping("v1/api/empleados/secretarios")
 public class SecretarioController {
 
     @Autowired
@@ -23,17 +24,17 @@ public class SecretarioController {
     @Autowired
     private EmpleadoService empleadoService;
 
-    @PostMapping("/secretarios")
-    public ResponseEntity<Secretario> crearEmpleado(@RequestBody Secretario secretario) {
+    @PostMapping("")
+    public ResponseEntity<Secretario> crearEmpleado(@Valid @RequestBody Secretario secretario) {
         return secretarioService.crearSecretario(secretario);
     }
 
-    @GetMapping("/secretarios")
+    @GetMapping("")
     public Collection<Empleado> mostrarSecretarios() {
         return empleadoService.listar(CargoEnum.SECRETARIO);
     }
 
-    @PutMapping("/secretarios/{dni}")
+    @PutMapping("/{dni}")
     public ResponseEntity<Secretario> modificar(@PathVariable String dni, @RequestBody Secretario secretario) {
         return secretarioService.modificarSecretario(dni, secretario);
     }

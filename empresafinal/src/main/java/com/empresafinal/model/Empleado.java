@@ -1,9 +1,17 @@
 package com.empresafinal.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Empleado {
 
     private String nombre;
     private String apellido;
+    @NotNull
+    @NotEmpty
     private String dni;
     private String telefono;
     private double sueldo;

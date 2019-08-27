@@ -11,10 +11,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("v1/api/empleados")
+@RequestMapping("v1/api/empleados/jefesdezona")
 public class JefeDeZonaController {
 
     @Autowired
@@ -23,17 +24,17 @@ public class JefeDeZonaController {
     @Autowired
     private EmpleadoService empleadoService;
 
-    @PostMapping("/jefesdezona")
-    public ResponseEntity<JefeDeZona> crearEmpleado(@RequestBody JefeDeZona jefeDeZona) {
+    @PostMapping("")
+    public ResponseEntity<JefeDeZona> crearEmpleado(@Valid @RequestBody JefeDeZona jefeDeZona) {
         return jefeDeZonaService.crearJefeDeZona(jefeDeZona);
     }
 
-    @GetMapping("/jefesdezona")
+    @GetMapping("")
     public Collection<Empleado> mostrarJefesDeZona() {
         return empleadoService.listar(CargoEnum.JEFE_DE_ZONA);
     }
 
-    @PutMapping("/jefesdezona/{dni}")
+    @PutMapping("/{dni}")
     public ResponseEntity<JefeDeZona> modificar(@PathVariable String dni, @RequestBody JefeDeZona jefeDeZona) {
         return jefeDeZonaService.modificarJefe(dni, jefeDeZona);
     }

@@ -22,7 +22,7 @@ public class SecretarioService {
                 Secretario secretario1 = new Secretario(secretario.getNombre(), secretario.getApellido(), secretario.getDni(),
                         secretario.getTelefono(), secretario.getSueldo(), secretario.getCargo(), secretario.getDespacho(),secretario.getFax());
                 empleadoRepository.agregarEmpleado(secretario1);
-                return new ResponseEntity<>(secretario, HttpStatus.CREATED);
+                return new ResponseEntity<>(secretario1, HttpStatus.CREATED);
             } else {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }

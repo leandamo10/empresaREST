@@ -20,7 +20,7 @@ public class EmpleadoService {
         return empleadoRepository.listar();
     }
 
-    public ResponseEntity<Empleado> mostrar(String dni) {
+    public ResponseEntity<Empleado> buscar(String dni) {
         Empleado empleado = empleadoRepository.buscarEmpleado(dni);
         if (empleado == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

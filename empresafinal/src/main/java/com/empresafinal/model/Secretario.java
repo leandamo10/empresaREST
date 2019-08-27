@@ -1,5 +1,8 @@
 package com.empresafinal.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Secretario extends Empleado {
 
     private String despacho;

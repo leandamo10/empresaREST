@@ -11,10 +11,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("v1/api/empleados")
+@RequestMapping("v1/api/empleados/vendedores")
 public class VendedorController {
 
     @Autowired
@@ -22,17 +23,17 @@ public class VendedorController {
     @Autowired
     private EmpleadoService empleadoService;
 
-    @PostMapping("/vendedores")
-    public ResponseEntity<Vendedor> crearEmpleado(@RequestBody Vendedor vendedor) {
+    @PostMapping("")
+    public ResponseEntity<Vendedor> crearEmpleado(@Valid @RequestBody Vendedor vendedor) {
         return vendedorService.crearVendedor(vendedor);
     }
 
-    @GetMapping("/vendedores")
+    @GetMapping("")
     public Collection<Empleado> mostrarVendedores() {
         return empleadoService.listar(CargoEnum.VENDEDOR);
     }
 
-    @PutMapping("/vendedores/{dni}")
+    @PutMapping("/{dni}")
     public ResponseEntity<Vendedor> modificar(@PathVariable String dni, @RequestBody Vendedor vendedor) {
         return vendedorService.modificarVendedor(dni, vendedor);
     }

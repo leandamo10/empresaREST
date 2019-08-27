@@ -26,7 +26,7 @@ public class VendedorService {
                 Vendedor vendedor1 = new Vendedor(vendedor.getNombre(), vendedor.getApellido(), vendedor.getDni(),
                         vendedor.getTelefono(), vendedor.getSueldo(), vendedor.getCargo(), vendedor.getComisiones());
                 empleadoRepository.agregarEmpleado(vendedor1);
-                return new ResponseEntity<>(vendedor, HttpStatus.CREATED);
+                return new ResponseEntity<>(vendedor1, HttpStatus.CREATED);
             } else {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
