@@ -24,37 +24,17 @@ public class JefeDeZonaController {
     private EmpleadoService empleadoService;
 
     @PostMapping("/jefesdezona")
-    public ResponseEntity<Empleado> crearEmpleado(@RequestBody JefeDeZona jefeDeZona) {
-        if (empleadoService.mostrarEmpleado(jefeDeZona.getDni())== null) {
-            jefeDeZona = jefeDeZonaService.crearJefeDeZona(jefeDeZona);
-            if (jefeDeZona == null) {
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-            } else {
-                return new ResponseEntity<>(jefeDeZona, HttpStatus.CREATED);
-            }
-        } else {
-            return new ResponseEntity<>(empleadoService.mostrarEmpleado(jefeDeZona.getDni()), HttpStatus.CONFLICT);
-        }
+    public ResponseEntity<JefeDeZona> crearEmpleado(@RequestBody JefeDeZona jefeDeZona) {
+        return jefeDeZonaService.crearJefeDeZona(jefeDeZona);
     }
+
     @GetMapping("/jefesdezona")
-    public Collection<Empleado> mostrarJefesDeZona(){
+    public Collection<Empleado> mostrarJefesDeZona() {
         return empleadoService.listar(CargoEnum.JEFE_DE_ZONA);
     }
 
     @PutMapping("/jefesdezona/{dni}")
-    public ResponseEntity<Empleado> modificar(@PathVariable String dni, @RequestBody JefeDeZona jefeDeZona) {
-        Empleado empleado1 = empleadoService.mostrarEmpleado(dni);
-        if (empleado1 == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else if (!jefeDeZona.getDni().equals(empleado1.getDni())){
-            return new ResponseEntity<>(HttpStatus.METHOD_NOT_ALLOWED);
-        } else {
-            if (jefeDeZona.getCargo().equals(CargoEnum.JEFE_DE_ZONA)) {
-                empleadoService.modificarEmpleado(dni, jefeDeZona);
-                return new ResponseEntity<>(jefeDeZona, HttpStatus.OK);
-            }else{
-                return new ResponseEntity<>(HttpStatus.METHOD_NOT_ALLOWED);
-            }
-        }
+    public ResponseEntity<JefeDeZona> modificar(@PathVariable String dni, @RequestBody JefeDeZona jefeDeZona) {
+        return jefeDeZonaService.modificarJefe(dni, jefeDeZona);
     }
 }

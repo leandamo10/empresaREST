@@ -5,9 +5,10 @@ public class JefeDeZona extends Empleado {
     private String despacho;
     private String secretario;
 
-    public JefeDeZona(){}
+    public JefeDeZona() {
+    }
 
-    public JefeDeZona (String nombre, String apellido, String dni, String telefono, double sueldo, CargoEnum cargo,String despacho, String secretario) {
+    public JefeDeZona(String nombre, String apellido, String dni, String telefono, double sueldo, CargoEnum cargo, String despacho, String secretario) {
         super(nombre, apellido, dni, telefono, sueldo, cargo);
         this.despacho = despacho;
         this.secretario = secretario;

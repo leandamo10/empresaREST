@@ -16,34 +16,35 @@ public class EmpleadoRepository {
 
     private Map<String, Empleado> listaEmpleados = new HashMap<>();
 
-    public Empleado agregarEmpleado(Empleado empleado){
-        listaEmpleados.put(empleado.getDni() ,empleado);
+    public Empleado agregarEmpleado(Empleado empleado) {
+        listaEmpleados.put(empleado.getDni(), empleado);
         return empleado;
     }
-    public Collection<Empleado> listar(){
+
+    public Collection<Empleado> listar() {
         return listaEmpleados.values();
     }
 
-    public Collection<Empleado> listarPorCargo(CargoEnum cargoEnum){
-         return listaEmpleados.values().stream()
-                 .filter(empleado -> empleado.getCargo().equals(cargoEnum))
-                 .collect(Collectors.toList());
+    public Collection<Empleado> listarPorCargo(CargoEnum cargoEnum) {
+        return listaEmpleados.values().stream()
+                .filter(empleado -> empleado.getCargo().equals(cargoEnum))
+                .collect(Collectors.toList());
     }
 
 
-
-    public Empleado mostrar(String dni){
+    public Empleado mostrar(String dni) {
         return listaEmpleados.get(dni);
     }
 
-    public Empleado modificar(String dni, Empleado empleado){
-        if (listaEmpleados.get(dni) == null){
+    public Empleado modificar(String dni, Empleado empleado) {
+        if (listaEmpleados.get(dni) == null) {
             return null;
         } else {
             return listaEmpleados.put(dni, empleado);
         }
     }
-    public Empleado borrar(String dni){
-     return listaEmpleados.remove(dni);
+
+    public Empleado borrar(String dni) {
+        return listaEmpleados.remove(dni);
     }
 }

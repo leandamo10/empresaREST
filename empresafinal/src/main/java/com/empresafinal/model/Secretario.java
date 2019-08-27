@@ -5,12 +5,13 @@ public class Secretario extends Empleado {
     private String despacho;
     private String fax;
 
-    public Secretario(){}
+    public Secretario() {
+    }
 
-    public Secretario (String nombre, String apellido, String dni, String telefono, double sueldo, CargoEnum cargo,String despacho, String fax) {
+    public Secretario(String nombre, String apellido, String dni, String telefono, double sueldo, CargoEnum cargo, String despacho, String fax) {
         super(nombre, apellido, dni, telefono, sueldo, cargo);
-        this.despacho=despacho;
-        this.fax=fax;
+        this.despacho = despacho;
+        this.fax = fax;
     }
 
     public String getDespacho() {

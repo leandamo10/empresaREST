@@ -18,12 +18,7 @@ public class EmpleadosController {
 
     @GetMapping("/empleados/{dni}")
     public ResponseEntity<Empleado> mostrar(@PathVariable String dni) {
-        Empleado empleado = empleadoService.mostrarEmpleado(dni);
-        if (empleado == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(empleado, HttpStatus.OK);
-        }
+        return empleadoService.mostrar(dni);
     }
 
     @GetMapping("/empleados")
@@ -35,28 +30,8 @@ public class EmpleadosController {
 
     @DeleteMapping(value = "/empleados/{dni}")
     public ResponseEntity<Empleado> borrar(@PathVariable String dni) {
-        Empleado empleado = empleadoService.mostrarEmpleado(dni);
-        if (empleado == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            empleadoService.borrarEmpleado(dni);
-            return new ResponseEntity<>(empleado, HttpStatus.OK);
-        }
+        return empleadoService.borrarEmpleado(dni);
     }
-
-   /* @PutMapping("/empleados/{dni}")
-    public ResponseEntity<Empleado> modificar(@PathVariable String dni, @RequestBody Empleado empleado) {
-        Empleado empleado1 = empleadoService.mostrarEmpleado(dni);
-        if (empleado1 == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else if (!empleado.getDni().equals(empleado1.getDni())){
-            return new ResponseEntity<>(HttpStatus.METHOD_NOT_ALLOWED);
-        }
-        else {
-            empleadoService.modificarEmpleado(dni, empleado);
-            return new ResponseEntity<>(empleado, HttpStatus.OK);
-        }
-    }*/
 }
 
 
