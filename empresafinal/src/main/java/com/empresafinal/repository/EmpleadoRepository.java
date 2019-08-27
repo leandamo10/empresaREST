@@ -3,6 +3,7 @@ package com.empresafinal.repository;
 import com.empresafinal.model.CargoEnum;
 import com.empresafinal.model.Empleado;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 
 import java.util.Collection;
@@ -10,10 +11,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@Component
+@Repository
 public class EmpleadoRepository {
 
-    Map<String, Empleado> listaEmpleados = new HashMap<>();
+    private Map<String, Empleado> listaEmpleados = new HashMap<>();
 
     public Empleado agregarEmpleado(Empleado empleado){
         listaEmpleados.put(empleado.getDni() ,empleado);
@@ -39,9 +40,7 @@ public class EmpleadoRepository {
         if (listaEmpleados.get(dni) == null){
             return null;
         } else {
-            Empleado empleado1 = new Empleado();
-            empleado1 = empleado;
-            return listaEmpleados.put(dni, empleado1);
+            return listaEmpleados.put(dni, empleado);
         }
     }
     public Empleado borrar(String dni){

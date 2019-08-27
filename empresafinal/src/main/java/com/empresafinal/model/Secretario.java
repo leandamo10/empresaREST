@@ -7,7 +7,7 @@ public class Secretario extends Empleado {
 
     public Secretario(){}
 
-    public Secretario (String nombre, String apellido, String dni, String telefono, double sueldo, CargoEnum cargo) {
+    public Secretario (String nombre, String apellido, String dni, String telefono, double sueldo, CargoEnum cargo,String despacho, String fax) {
         super(nombre, apellido, dni, telefono, sueldo, cargo);
         this.despacho=despacho;
         this.fax=fax;

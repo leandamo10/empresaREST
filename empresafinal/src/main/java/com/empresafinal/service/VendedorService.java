@@ -25,8 +25,7 @@ public class VendedorService {
     public Vendedor crearVendedor(Vendedor vendedor) {
         if (vendedor.getCargo().equals(CargoEnum.VENDEDOR)) {
             Vendedor vendedor1 = new Vendedor(vendedor.getNombre(), vendedor.getApellido(), vendedor.getDni(),
-                    vendedor.getTelefono(), vendedor.getSueldo(), vendedor.getCargo());
-            vendedor1.setComisiones(vendedor.getComisiones());
+                    vendedor.getTelefono(), vendedor.getSueldo(), vendedor.getCargo(), vendedor.getComisiones());
             empleadoRepository.agregarEmpleado(vendedor1);
             return vendedor1;
         } else {

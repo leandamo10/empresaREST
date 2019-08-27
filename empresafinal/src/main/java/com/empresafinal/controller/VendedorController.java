@@ -47,10 +47,13 @@ public class VendedorController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else if (!vendedor.getDni().equals(empleado1.getDni())){
             return new ResponseEntity<>(HttpStatus.METHOD_NOT_ALLOWED);
-
         } else {
-            empleadoService.modificarEmpleado(dni, vendedor);
-            return new ResponseEntity<>(vendedor, HttpStatus.OK);
+            if (vendedor.getCargo().equals(CargoEnum.VENDEDOR)) {
+                empleadoService.modificarEmpleado(dni, vendedor);
+                return new ResponseEntity<>(vendedor, HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(HttpStatus.METHOD_NOT_ALLOWED);
+            }
         }
     }
 }

@@ -44,7 +44,7 @@ public class EmpleadosController {
         }
     }
 
-    @PutMapping("/empleados/{dni}")
+   /* @PutMapping("/empleados/{dni}")
     public ResponseEntity<Empleado> modificar(@PathVariable String dni, @RequestBody Empleado empleado) {
         Empleado empleado1 = empleadoService.mostrarEmpleado(dni);
         if (empleado1 == null) {
@@ -56,7 +56,7 @@ public class EmpleadosController {
             empleadoService.modificarEmpleado(dni, empleado);
             return new ResponseEntity<>(empleado, HttpStatus.OK);
         }
-    }
+    }*/
 }
 
 

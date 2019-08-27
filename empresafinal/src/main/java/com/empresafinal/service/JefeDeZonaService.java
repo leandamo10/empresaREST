@@ -16,9 +16,7 @@ public class JefeDeZonaService {
     public JefeDeZona crearJefeDeZona(JefeDeZona jefeDeZona) {
         if (jefeDeZona.getCargo().equals(CargoEnum.JEFE_DE_ZONA)) {
             JefeDeZona jefeDeZona1= new JefeDeZona(jefeDeZona.getNombre(), jefeDeZona.getApellido(), jefeDeZona.getDni(),
-                    jefeDeZona.getTelefono(), jefeDeZona.getSueldo(), jefeDeZona.getCargo());
-            jefeDeZona1.setDespacho(jefeDeZona.getDespacho());
-            jefeDeZona1.setSecretario(jefeDeZona.getSecretario());
+                    jefeDeZona.getTelefono(), jefeDeZona.getSueldo(), jefeDeZona.getCargo(),jefeDeZona.getDespacho(), jefeDeZona.getSecretario());
             empleadoRepository.agregarEmpleado(jefeDeZona1);
             return jefeDeZona1;
         } else {

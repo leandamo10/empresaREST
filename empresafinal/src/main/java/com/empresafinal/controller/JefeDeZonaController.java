@@ -48,10 +48,13 @@ public class JefeDeZonaController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else if (!jefeDeZona.getDni().equals(empleado1.getDni())){
             return new ResponseEntity<>(HttpStatus.METHOD_NOT_ALLOWED);
-        }
-        else {
-            empleadoService.modificarEmpleado(dni, jefeDeZona);
-            return new ResponseEntity<>(jefeDeZona, HttpStatus.OK);
+        } else {
+            if (jefeDeZona.getCargo().equals(CargoEnum.JEFE_DE_ZONA)) {
+                empleadoService.modificarEmpleado(dni, jefeDeZona);
+                return new ResponseEntity<>(jefeDeZona, HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(HttpStatus.METHOD_NOT_ALLOWED);
+            }
         }
     }
 }

@@ -15,9 +15,7 @@ public class SecretarioService {
     public Secretario crearSecretario(Secretario secretario) {
         if (secretario.getCargo().equals(CargoEnum.SECRETARIO)) {
             Secretario secretario1= new Secretario(secretario.getNombre(), secretario.getApellido(), secretario.getDni(),
-                    secretario.getTelefono(), secretario.getSueldo(), secretario.getCargo());
-            secretario1.setDespacho(secretario.getDespacho());
-            secretario1.setFax(secretario.getFax());
+                    secretario.getTelefono(), secretario.getSueldo(), secretario.getCargo(), secretario.getDespacho(), secretario.getFax());
             empleadoRepository.agregarEmpleado(secretario1);
             return secretario1;
         } else {

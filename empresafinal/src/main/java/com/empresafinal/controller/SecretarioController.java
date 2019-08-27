@@ -48,10 +48,13 @@ public class SecretarioController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else if (!secretario.getDni().equals(empleado1.getDni())){
             return new ResponseEntity<>(HttpStatus.METHOD_NOT_ALLOWED);
-
         } else {
-            empleadoService.modificarEmpleado(dni, secretario);
-            return new ResponseEntity<>(secretario, HttpStatus.OK);
+            if (secretario.getCargo().equals(CargoEnum.SECRETARIO)) {
+                empleadoService.modificarEmpleado(dni, secretario);
+                return new ResponseEntity<>(secretario, HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(HttpStatus.METHOD_NOT_ALLOWED);
+            }
         }
     }
 }
