@@ -2,8 +2,6 @@ package com.empresafinal.service;
 
 
 import com.empresafinal.model.CargoEnum;
-import com.empresafinal.model.Empleado;
-import com.empresafinal.model.Secretario;
 import com.empresafinal.model.Vendedor;
 import com.empresafinal.repository.EmpleadoRepository;
 
@@ -11,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.Collection;
 
 
 @Service
@@ -40,7 +36,7 @@ public class VendedorService {
     }
 
     public ResponseEntity<Vendedor> modificarVendedor(String dni, Vendedor vendedor) {
-        if (empleadoRepository.mostrar(dni)==null) {
+        if (empleadoRepository.buscarEmpleado(dni)==null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else if (!vendedor.getDni().equals(dni)) {
             return new ResponseEntity<>(HttpStatus.METHOD_NOT_ALLOWED);

@@ -21,7 +21,7 @@ public class EmpleadoService {
     }
 
     public ResponseEntity<Empleado> mostrar(String dni) {
-        Empleado empleado = empleadoRepository.mostrar(dni);
+        Empleado empleado = empleadoRepository.buscarEmpleado(dni);
         if (empleado == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
@@ -29,12 +29,12 @@ public class EmpleadoService {
         }
     }
     public Empleado mostrarEmpleado(String dni){
-        return empleadoRepository.mostrar(dni);
+        return empleadoRepository.buscarEmpleado(dni);
     }
 
 
     public ResponseEntity<Empleado> borrarEmpleado(String dni) {
-        Empleado empleado = empleadoRepository.mostrar(dni);
+        Empleado empleado = empleadoRepository.buscarEmpleado(dni);
         if (empleado == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {

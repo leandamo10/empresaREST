@@ -2,7 +2,6 @@ package com.empresafinal.service;
 
 
 import com.empresafinal.model.CargoEnum;
-import com.empresafinal.model.Empleado;
 import com.empresafinal.model.JefeDeZona;
 import com.empresafinal.repository.EmpleadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,7 @@ public class JefeDeZonaService {
     }
 
     public ResponseEntity<JefeDeZona> modificarJefe(String dni, JefeDeZona jefeDeZona) {
-        if (empleadoRepository.mostrar(dni)==null) {
+        if (empleadoRepository.buscarEmpleado(dni)==null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else if (!jefeDeZona.getDni().equals(dni)) {
             return new ResponseEntity<>(HttpStatus.METHOD_NOT_ALLOWED);

@@ -32,7 +32,7 @@ public class EmpleadoRepository {
     }
 
 
-    public Empleado mostrar(String dni) {
+    public Empleado buscarEmpleado(String dni) {
         return listaEmpleados.get(dni);
     }
 
