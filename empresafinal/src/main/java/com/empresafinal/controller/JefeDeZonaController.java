@@ -1,6 +1,5 @@
 package com.empresafinal.controller;
 
-
 import com.empresafinal.model.CargoEnum;
 import com.empresafinal.model.Empleado;
 import com.empresafinal.model.JefeDeZona;
@@ -12,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
 @RestController

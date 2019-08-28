@@ -4,14 +4,18 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Empleado {
 
+    @Pattern(regexp = "^[\\p{L}]+")
     private String nombre;
+    @Pattern(regexp = "^[\\p{L}]+")
     private String apellido;
     @NotNull
     @NotEmpty
+    @Pattern(regexp = "^(\\d{7}|\\d{8})$",message = "El dni tiene que tener 7 u 8 numeros")
     private String dni;
     private String telefono;
     private double sueldo;

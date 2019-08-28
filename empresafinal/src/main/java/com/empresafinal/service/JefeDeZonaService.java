@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.sql.PseudoColumnUsage;
 
 @Service
 public class JefeDeZonaService {
@@ -18,6 +17,7 @@ public class JefeDeZonaService {
     private EmpleadoRepository empleadoRepository;
     @Autowired
     private EmpleadoService empleadoService;
+
 
     public ResponseEntity<JefeDeZona> crearJefeDeZona(JefeDeZona jefeDeZona) {
         if (empleadoService.mostrarEmpleado(jefeDeZona.getDni()) == null) {
