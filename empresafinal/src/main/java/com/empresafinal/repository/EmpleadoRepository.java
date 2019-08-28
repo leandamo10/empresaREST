@@ -2,10 +2,7 @@ package com.empresafinal.repository;
 
 import com.empresafinal.model.CargoEnum;
 import com.empresafinal.model.Empleado;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +27,6 @@ public class EmpleadoRepository {
                 .filter(empleado -> empleado.getCargo().equals(cargoEnum))
                 .collect(Collectors.toList());
     }
-
 
     public Empleado buscarEmpleado(String dni) {
         return listaEmpleados.get(dni);

@@ -1,7 +1,6 @@
 package com.empresafinal.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;

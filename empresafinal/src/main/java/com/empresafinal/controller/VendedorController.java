@@ -2,15 +2,12 @@ package com.empresafinal.controller;
 
 import com.empresafinal.model.CargoEnum;
 import com.empresafinal.model.Empleado;
-import com.empresafinal.model.Secretario;
 import com.empresafinal.model.Vendedor;
 import com.empresafinal.service.EmpleadoService;
 import com.empresafinal.service.VendedorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.Collection;
 
