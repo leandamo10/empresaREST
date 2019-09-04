@@ -25,19 +25,23 @@ public class EmpleadoService {
         }
     }
 
-    public List<Empleado> findEmpleados() {
-        return empleadoRepository.findAll();
-    }
-
-    public ResponseEntity<Empleado> borrar(String dni) {
-        Empleado empleado = empleadoRepository.findByDni(dni);
-        if (empleado == null) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+    public List<Empleado> findEmpleados(Double salarioMin, Double salarioMax) {
+        if (salarioMin == null || salarioMax == null) {
+            return empleadoRepository.findAll();
         } else {
-            return new ResponseEntity( empleadoRepository.deleteByDni(dni), HttpStatus.OK);
+            return empleadoRepository.findUserBySalarioBetween(salarioMin, salarioMax);
         }
     }
 
-}
+        public ResponseEntity<Empleado> borrar (String dni){
+            Empleado empleado = empleadoRepository.findByDni(dni);
+            if (empleado == null) {
+                return new ResponseEntity(HttpStatus.NOT_FOUND);
+            } else {
+                return new ResponseEntity(empleadoRepository.deleteByDni(dni), HttpStatus.OK);
+            }
+        }
+
+    }
 
 

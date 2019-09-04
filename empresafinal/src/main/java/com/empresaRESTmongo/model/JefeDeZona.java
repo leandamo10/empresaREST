@@ -13,7 +13,7 @@ public class JefeDeZona extends Empleado {
     public JefeDeZona() {
     }
 
-    public JefeDeZona(String id, String nombre, String apellido, String dni, String telefono, double sueldo, CargoEnum cargo, String despacho) {
+    public JefeDeZona(String id, String nombre, String apellido, String dni, String telefono, Double sueldo, CargoEnum cargo, String despacho) {
         super(id, nombre, apellido, dni, telefono, sueldo, cargo);
         this.despacho = despacho;
     }

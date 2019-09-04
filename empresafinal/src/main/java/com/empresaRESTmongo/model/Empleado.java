@@ -14,6 +14,9 @@ import javax.validation.constraints.Pattern;
 public class Empleado {
 
 
+
+
+
     @Id
     private String id;
     @Pattern(regexp = "^[\\p{L}]+")
@@ -25,14 +28,14 @@ public class Empleado {
     @Pattern(regexp = "^(\\d{7}|\\d{8})$", message = "El dni tiene que tener 7 u 8 numeros")
     private String dni;
     private String telefono;
-    private double sueldo;
+    private Double sueldo;
     private CargoEnum cargo;
 
 
     public Empleado() {
     }
 
-    public Empleado(String id, String nombre, String apellido, String dni, String telefono, double sueldo, CargoEnum cargo) {
+    public Empleado(String id, String nombre, String apellido, String dni, String telefono, Double sueldo, CargoEnum cargo) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -74,11 +77,11 @@ public class Empleado {
         this.telefono = telefono;
     }
 
-    public double getSueldo() {
+    public Double getSueldo() {
         return sueldo;
     }
 
-    public void setSueldo(double sueldo) {
+    public void setSueldo(Double sueldo) {
         this.sueldo = sueldo;
     }
 

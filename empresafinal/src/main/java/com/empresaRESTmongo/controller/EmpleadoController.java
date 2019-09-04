@@ -23,13 +23,14 @@ public class EmpleadoController {
         return empleadoService.findEmpleado(dni);
     }
 
+    // Agregar query parameter sueldMin y sueldoMax y (si estan definidos) devolver filtrando correctamente (no filtrado en memorio sino filtrado en la propia query a mongo)
     @GetMapping("")
-    public List<Empleado> getEmpleados(){
-        return (empleadoService.findEmpleados());
+    public List<Empleado> getEmpleados(@RequestParam (required = false) Double sueldoMin, Double sueldoMax) {
+        return (empleadoService.findEmpleados(sueldoMin, sueldoMax));
     }
 
     @DeleteMapping("/{dni}")
-    public ResponseEntity deleteEmpleado(@PathVariable String dni){
+    public ResponseEntity deleteEmpleado(@PathVariable String dni) {
         return (empleadoService.borrar(dni));
     }
 }

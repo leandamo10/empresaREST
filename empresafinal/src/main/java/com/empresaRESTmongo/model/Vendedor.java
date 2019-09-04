@@ -10,7 +10,7 @@ public class Vendedor extends Empleado {
     public Vendedor() {
     }
 
-    public Vendedor(String id, String nombre, String apellido, String dni, String telefono, double sueldo, CargoEnum cargo, double comisiones) {
+    public Vendedor(String id, String nombre, String apellido, String dni, String telefono, Double sueldo, CargoEnum cargo, double comisiones) {
         super(id, nombre, apellido, dni, telefono, sueldo, cargo);
         this.comisiones = comisiones;
     }
