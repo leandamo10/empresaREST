@@ -1,14 +1,11 @@
 package com.empresaRESTmongo.controller;
 
-
 import com.empresaRESTmongo.model.Empleado;
 import com.empresaRESTmongo.service.EmpleadoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Pattern;
 import java.util.List;
 
 @RestController
@@ -28,6 +25,12 @@ public class EmpleadoController {
     public List<Empleado> getEmpleados(@RequestParam (required = false) Double sueldoMin, Double sueldoMax) {
         return (empleadoService.findEmpleados(sueldoMin, sueldoMax));
     }
+
+    @GetMapping("/nombre")
+    public List<Empleado> getEmpleadosByName(@RequestParam String nombre){
+        return empleadoService.findByNombre(nombre);
+    }
+
 
     @DeleteMapping("/{dni}")
     public ResponseEntity deleteEmpleado(@PathVariable String dni) {

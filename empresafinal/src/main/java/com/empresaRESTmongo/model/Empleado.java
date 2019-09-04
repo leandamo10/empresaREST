@@ -13,10 +13,6 @@ import javax.validation.constraints.Pattern;
 @Document(collection = "Empleado")
 public class Empleado {
 
-
-
-
-
     @Id
     private String id;
     @Pattern(regexp = "^[\\p{L}]+")

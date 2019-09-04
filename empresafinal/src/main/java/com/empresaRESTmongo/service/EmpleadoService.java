@@ -3,6 +3,7 @@ package com.empresaRESTmongo.service;
 import com.empresaRESTmongo.model.Empleado;
 import com.empresaRESTmongo.repository.EmpleadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -33,15 +34,18 @@ public class EmpleadoService {
         }
     }
 
-        public ResponseEntity<Empleado> borrar (String dni){
-            Empleado empleado = empleadoRepository.findByDni(dni);
-            if (empleado == null) {
-                return new ResponseEntity(HttpStatus.NOT_FOUND);
-            } else {
-                return new ResponseEntity(empleadoRepository.deleteByDni(dni), HttpStatus.OK);
-            }
-        }
-
+    public List<Empleado> findByNombre(String nombre) {
+        return  empleadoRepository.findByName(nombre);
     }
+
+    public ResponseEntity<Empleado> borrar(String dni) {
+        Empleado empleado = empleadoRepository.findByDni(dni);
+        if (empleado == null) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity(empleadoRepository.deleteByDni(dni), HttpStatus.OK);
+        }
+     }
+}
 
 
