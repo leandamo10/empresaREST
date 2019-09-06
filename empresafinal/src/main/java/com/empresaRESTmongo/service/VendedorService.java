@@ -1,7 +1,6 @@
 package com.empresaRESTmongo.service;
 
 import com.empresaRESTmongo.model.CargoEnum;
-import com.empresaRESTmongo.model.Empleado;
 import com.empresaRESTmongo.model.Vendedor;
 import com.empresaRESTmongo.repository.EmpleadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;

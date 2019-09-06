@@ -2,11 +2,13 @@ package com.empresaRESTmongo.controller;
 
 import com.empresaRESTmongo.model.Empleado;
 import com.empresaRESTmongo.service.EmpleadoService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("v1/api/empleados")
@@ -20,17 +22,16 @@ public class EmpleadoController {
         return empleadoService.findEmpleado(dni);
     }
 
-    // Agregar query parameter sueldMin y sueldoMax y (si estan definidos) devolver filtrando correctamente (no filtrado en memorio sino filtrado en la propia query a mongo)
+    // Agregar query parameter sueldMin y sueldoMax y (si estan definidos) devolver filtrando correctamente (no filtrado en memoria sino filtrado en la propia query a mongo)
+    @GetMapping("/sueldo")
+    public List<Empleado> getEmpleados(@RequestParam String sueldoMin, String sueldoMax) {
+        return (empleadoService.filterBySueldo(sueldoMin, sueldoMax));
+    }
+
     @GetMapping("")
-    public List<Empleado> getEmpleados(@RequestParam (required = false) Double sueldoMin, Double sueldoMax) {
-        return (empleadoService.findEmpleados(sueldoMin, sueldoMax));
+    public ResponseEntity getEmpleadosByParam(@RequestParam (required = false) Map<String, String> allParams){
+        return empleadoService.findByParam(allParams);
     }
-
-    @GetMapping("/nombre")
-    public List<Empleado> getEmpleadosByName(@RequestParam String nombre){
-        return empleadoService.findByNombre(nombre);
-    }
-
 
     @DeleteMapping("/{dni}")
     public ResponseEntity deleteEmpleado(@PathVariable String dni) {

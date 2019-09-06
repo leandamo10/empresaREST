@@ -5,21 +5,21 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Vendedor extends Empleado {
 
-    private double comisiones;
+    private Double comisiones;
 
     public Vendedor() {
     }
 
-    public Vendedor(String id, String nombre, String apellido, String dni, String telefono, Double sueldo, CargoEnum cargo, double comisiones) {
+    public Vendedor(String id, String nombre, String apellido, String dni, String telefono, Double sueldo, CargoEnum cargo, Double comisiones) {
         super(id, nombre, apellido, dni, telefono, sueldo, cargo);
         this.comisiones = comisiones;
     }
 
-    public double getComisiones() {
+    public Double getComisiones() {
         return comisiones;
     }
 
-    public void setComisiones(double comisiones) {
+    public void setComisiones(Double comisiones) {
         this.comisiones = comisiones;
     }
 }

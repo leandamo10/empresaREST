@@ -5,7 +5,6 @@ import com.empresaRESTmongo.model.Vendedor;
 import com.empresaRESTmongo.service.EmpleadoService;
 import com.empresaRESTmongo.service.VendedorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
