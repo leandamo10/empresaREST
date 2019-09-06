@@ -24,7 +24,7 @@ public class EmpleadoController {
 
     // Agregar query parameter sueldMin y sueldoMax y (si estan definidos) devolver filtrando correctamente (no filtrado en memoria sino filtrado en la propia query a mongo)
     @GetMapping("/sueldo")
-    public List<Empleado> getEmpleados(@RequestParam String sueldoMin, String sueldoMax) {
+    public List<Empleado> getEmpleados(@RequestParam Double sueldoMin, Double sueldoMax) {
         return (empleadoService.filterBySueldo(sueldoMin, sueldoMax));
     }
 

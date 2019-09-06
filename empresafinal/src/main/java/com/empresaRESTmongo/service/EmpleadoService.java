@@ -28,11 +28,8 @@ public class EmpleadoService {
         }
     }
 
-    public List<Empleado> filterBySueldo(String sueldoMin, String sueldoMax) {
-        Double var1 = Double.parseDouble(sueldoMin);
-        Double var2 = Double.parseDouble(sueldoMax);
-
-        return empleadoRepository.findUserBySueldoBetween(var1, var2);
+    public List<Empleado> filterBySueldo(Double sueldoMin, Double sueldoMax) {
+        return empleadoRepository.findUserBySueldoBetween(sueldoMin, sueldoMax);
     }
 
     public ResponseEntity<Empleado> borrar(String dni) {
@@ -48,20 +45,21 @@ public class EmpleadoService {
         if (allParams.isEmpty()) {
             return new ResponseEntity(empleadoRepository.findAll(), HttpStatus.OK);
         } else {
-            List<Empleado> Lista1 = new ArrayList<>();
+            List<Empleado> lista = new ArrayList<>();
             for (String key : allParams.keySet()) {
-                if( key.equals("comisiones")||key.equals("sueldo")){
+                if (key.equals("comisiones") || key.equals("sueldo")) {
                     String var2 = allParams.get(key);
-                    Lista1.addAll(empleadoRepository.searchByNumber(key, (Double.valueOf(var2))));
+                    lista.addAll(empleadoRepository.searchByNumber(key, (Double.valueOf(var2))));
                 } else {
-                String var1 = allParams.get(key);
-                Lista1.addAll(empleadoRepository.searchByParam(key, var1));}
+                    String var1 = allParams.get(key);
+                    lista.addAll(empleadoRepository.searchByParam(key, var1));
+                }
             }
-            Map<String, Empleado> ListaSinRepetidos1 = new HashMap<>();
-            for (Empleado empleado : Lista1) {
-                ListaSinRepetidos1.put(empleado.getDni(), empleado);
+            Map<String, Empleado> listaSinRepetidos = new HashMap<>();
+            for (Empleado empleado : lista) {
+                listaSinRepetidos.put(empleado.getDni(), empleado);
             }
-            return new ResponseEntity(ListaSinRepetidos1, HttpStatus.OK);
+            return new ResponseEntity(listaSinRepetidos, HttpStatus.OK);
         }
     }
 }

@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class JefeDeZona extends Empleado {
 
-
     private String despacho;
     private String secretarioDni;
     private Empleado secretario;
