@@ -11,26 +11,30 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("v1/api/empleados/vendedores")
+@RequestMapping("v1/api/")
 public class VendedorController {
     @Autowired
     private VendedorService vendedorService;
     @Autowired
     private EmpleadoService empleadoService;
 
-    @PostMapping("")
+    @PostMapping("empleados/vendedores")
     public ResponseEntity<Vendedor> newEmpleado(@Valid @RequestBody Vendedor vendedor) {
         return vendedorService.newVendedor(vendedor);
     }
 
-    @GetMapping("")
+    @GetMapping("empleados/vendedores")
     public ResponseEntity getVendedores() {
         return vendedorService.findVendedores(CargoEnum.VENDEDOR);
     }
 
-    @PutMapping("/{dni}")
+    @PutMapping("empleados/vendedores/{dni}")
     public ResponseEntity<Vendedor> updateVendedor(@RequestBody Vendedor vendedor, @PathVariable String dni) {
         return vendedorService.insertVendedor(dni, vendedor);
     }
 
+    @PostMapping("facultad/vendedores/{dni}")
+    public ResponseEntity<Vendedor> newEmpleado(@PathVariable String dni) {
+        return vendedorService.newVendedorFromFacultad(dni);
+    }
 }

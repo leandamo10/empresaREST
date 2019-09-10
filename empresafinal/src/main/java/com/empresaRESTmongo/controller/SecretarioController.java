@@ -11,26 +11,30 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("v1/api/empleados/secretarios")
+@RequestMapping("v1/api/")
 public class SecretarioController {
     @Autowired
     private SecretarioService secretarioService;
     @Autowired
     private EmpleadoService empleadoService;
 
-    @PostMapping("")
+    @PostMapping("empleados/secretarios")
     public ResponseEntity<Secretario> newEmpleado(@Valid @RequestBody Secretario sec) {
         return secretarioService.newSecretario(sec);
     }
 
-    @GetMapping("")
-    public ResponseEntity getVendedores(){
+    @GetMapping("empleados/secretarios")
+    public ResponseEntity getVendedores() {
         return secretarioService.findSecretarios(CargoEnum.SECRETARIO);
     }
 
-    @PutMapping("/{dni}")
-    public ResponseEntity<Secretario> updateSecretario(@RequestBody Secretario secretario,@PathVariable String dni){
+    @PutMapping("empleados/secretarios/{dni}")
+    public ResponseEntity<Secretario> updateSecretario(@RequestBody Secretario secretario, @PathVariable String dni) {
         return secretarioService.insertSecretario(dni, secretario);
     }
 
+    @PostMapping("facultad/secretarios/{dni}")
+    public ResponseEntity<Secretario> newEmpleado(@PathVariable String dni) {
+        return secretarioService.newSecretarioFromFacultad(dni);
+    }
 }

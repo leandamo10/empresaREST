@@ -1,8 +1,10 @@
 package com.empresaRESTmongo.service;
 
 import com.empresaRESTmongo.model.CargoEnum;
+import com.empresaRESTmongo.model.EmpleadoFacultad;
 import com.empresaRESTmongo.model.Secretario;
 import com.empresaRESTmongo.repository.EmpleadoRepository;
+import com.empresafinal.model.JefeDeZona;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,9 @@ public class SecretarioService {
 
     @Autowired
     EmpleadoRepository empleadoRepository;
+
+    @Autowired
+    EmpleadoService empleadoService;
 
     public ResponseEntity<Secretario> newSecretario(Secretario secretario) {
         if (empleadoRepository.findByDni(secretario.getDni()) != null) {
@@ -47,6 +52,25 @@ public class SecretarioService {
             }
         }else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    public ResponseEntity<Secretario> newSecretarioFromFacultad(String dni) {
+        EmpleadoFacultad empleado = empleadoService.getEmpleadoFromFacultadByDni(dni);
+        if (empleado == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            if (empleadoRepository.findByDni(empleado.getDni()) == null) {
+                Secretario secretario = new Secretario();
+                secretario.setCargo(CargoEnum.SECRETARIO);
+                secretario.setNombre(empleado.getNombre());
+                secretario.setApellido(empleado.getApellido());
+                secretario.setDni(empleado.getDni());
+                empleadoRepository.save(secretario);
+                return new ResponseEntity(secretario, HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>(HttpStatus.METHOD_NOT_ALLOWED);
+            }
         }
     }
 }

@@ -1,6 +1,8 @@
 package com.empresaRESTmongo.service;
 
+import com.empresaRESTmongo.Cliente.FacultadCliente;
 import com.empresaRESTmongo.model.Empleado;
+import com.empresaRESTmongo.model.EmpleadoFacultad;
 import com.empresaRESTmongo.repository.EmpleadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,12 +12,14 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collectors;
 
-
 @Service
 public class EmpleadoService {
 
     @Autowired
     private EmpleadoRepository empleadoRepository;
+
+    @Autowired
+    FacultadCliente facultadCliente;
 
     public ResponseEntity<Empleado> findEmpleado(String dni) {
         Empleado empleado = empleadoRepository.findByDni(dni);
@@ -77,7 +81,7 @@ public class EmpleadoService {
                     }
                     for (Empleado empleado : lista) {
                         for (int i = 0; i < lista1.size(); i++) {
-                            if (lista1.get(i).getDni().contains(empleado.getDni())) {
+                            if (empleado.getDni().equals(lista1.get(i).getDni())) {
                                 lista2.add(empleado);
                             }
                         }
@@ -85,12 +89,20 @@ public class EmpleadoService {
                     lista = lista2;
                     lista1.removeAll(lista1);
                 }
-
             }
             Set<Empleado> lista3 = lista.stream().collect(Collectors.toSet());
             return new ResponseEntity(lista3, HttpStatus.OK);
         }
     }
+
+    public List<EmpleadoFacultad> getEmpleadosFromFacultad(){
+        return facultadCliente.getEmpleadosFromFacultad();
+    }
+
+    public EmpleadoFacultad getEmpleadoFromFacultadByDni(String dni){
+      return facultadCliente.getEmpleadoFromFacultadByDni(dni);
+    }
+
 }
 
 

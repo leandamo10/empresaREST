@@ -1,6 +1,8 @@
 package com.empresaRESTmongo.service;
 
 import com.empresaRESTmongo.model.CargoEnum;
+import com.empresaRESTmongo.model.Empleado;
+import com.empresaRESTmongo.model.EmpleadoFacultad;
 import com.empresaRESTmongo.model.JefeDeZona;
 import com.empresaRESTmongo.repository.EmpleadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ public class JefeService {
     @Autowired
     EmpleadoRepository empleadoRepository;
 
+    @Autowired
+    EmpleadoService empleadoService;
+
     public ResponseEntity<JefeDeZona> newJefe(JefeDeZona jefeDeZona){
         if (empleadoRepository.findByDni(jefeDeZona.getDni()) != null){
             return new ResponseEntity<>(HttpStatus.METHOD_NOT_ALLOWED);
@@ -21,6 +26,25 @@ public class JefeService {
         return new ResponseEntity<>(empleadoRepository.save(jefeDeZona), HttpStatus.CREATED);}
         else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    public ResponseEntity<JefeDeZona> newJefeFromFacultad(String dni) {
+        EmpleadoFacultad empleado = empleadoService.getEmpleadoFromFacultadByDni(dni);
+        if (empleado==null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            if (empleadoRepository.findByDni(empleado.getDni()) == null) {
+                JefeDeZona jefeDeZona1 = new JefeDeZona();
+                jefeDeZona1.setCargo(CargoEnum.JEFE_DE_ZONA);
+                jefeDeZona1.setNombre(empleado.getNombre());
+                jefeDeZona1.setApellido(empleado.getApellido());
+                jefeDeZona1.setDni(empleado.getDni());
+                empleadoRepository.save(jefeDeZona1);
+                return new ResponseEntity<JefeDeZona>(jefeDeZona1, HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>(HttpStatus.METHOD_NOT_ALLOWED);
+            }
         }
     }
 

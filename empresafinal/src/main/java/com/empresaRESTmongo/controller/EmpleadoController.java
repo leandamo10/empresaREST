@@ -2,7 +2,6 @@ package com.empresaRESTmongo.controller;
 
 import com.empresaRESTmongo.model.Empleado;
 import com.empresaRESTmongo.service.EmpleadoService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +28,7 @@ public class EmpleadoController {
     }
 
     @GetMapping("")
-    public ResponseEntity getEmpleadosByParam(@RequestParam (required = false) Map<String, String> allParams){
+    public ResponseEntity getEmpleadosByParam(@RequestParam(required = false) Map<String, String> allParams) {
         return empleadoService.findByParam(allParams);
     }
 
@@ -38,4 +37,5 @@ public class EmpleadoController {
         return (empleadoService.borrar(dni));
     }
 }
+
 

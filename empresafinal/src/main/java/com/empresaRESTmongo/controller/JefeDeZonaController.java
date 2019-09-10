@@ -11,26 +11,30 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("v1/api/empleados/jefes")
+@RequestMapping("v1/api/")
 public class JefeDeZonaController {
     @Autowired
     private JefeService jefeService;
     @Autowired
     private EmpleadoService empleadoService;
 
-    @PostMapping("")
+    @PostMapping("empleados/jefes")
     public ResponseEntity<JefeDeZona> newEmpleado(@Valid @RequestBody JefeDeZona jefeDeZona) {
         return jefeService.newJefe(jefeDeZona);
     }
 
-    @GetMapping("")
+    @GetMapping("empleados/jefes")
     public ResponseEntity getVendedores() {
         return jefeService.findJefes(CargoEnum.JEFE_DE_ZONA);
     }
 
-    @PutMapping("/{dni}")
-    public ResponseEntity<JefeDeZona> updateSecretario(@RequestBody JefeDeZona jefeDeZona,@PathVariable String dni){
+    @PutMapping("empleados/jefes/{dni}")
+    public ResponseEntity<JefeDeZona> updateSecretario(@RequestBody JefeDeZona jefeDeZona, @PathVariable String dni) {
         return jefeService.insertJefe(dni, jefeDeZona);
     }
 
+    @PostMapping("facultad/jefes/{dni}")
+    public ResponseEntity<JefeDeZona> newEmpleado(@PathVariable String dni) {
+        return jefeService.newJefeFromFacultad(dni);
+    }
 }
