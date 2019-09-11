@@ -8,11 +8,13 @@ public class EmpleadoFacultad {
     private String nombre;
     private String apellido;
     private String dni;
+    private CargoEnumFacultad cargo;
 
-    public EmpleadoFacultad(String nombre, String apellido, String dni) {
+    public EmpleadoFacultad(String nombre, String apellido, String dni, CargoEnumFacultad cargo) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
+        this.cargo = cargo;
     }
 
     public EmpleadoFacultad() {
@@ -40,5 +42,13 @@ public class EmpleadoFacultad {
 
     public void setDni(String dni) {
         this.dni = dni;
+    }
+
+    public CargoEnumFacultad getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(CargoEnumFacultad cargo) {
+        this.cargo = cargo;
     }
 }

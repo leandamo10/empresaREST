@@ -50,7 +50,6 @@ public class FacultadCliente {
                 ResponseEntity<String> xxx = restTemplate.getForEntity(url, String.class);
                 a = objectMapper.readValue(xxx.getBody(), new TypeReference<List<EmpleadoFacultad>>() {
                 });
-
             }
             return new ResponseEntity(a, HttpStatus.OK);
         } catch (ResourceAccessException ex) {
