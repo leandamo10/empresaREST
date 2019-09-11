@@ -1,12 +1,11 @@
 package com.empresaRESTmongo.controller;
 
-
-import com.empresaRESTmongo.model.EmpleadoFacultad;
 import com.empresaRESTmongo.service.EmpleadoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("v1/api/facultad")
@@ -16,12 +15,12 @@ public class FacultadController {
     EmpleadoService empleadoService;
 
     @GetMapping("")
-    public List<EmpleadoFacultad> getEmpleadosFromFactultad() {
-        return empleadoService.getEmpleadosFromFacultad();
+    public ResponseEntity getEmpleadosFromFactultad(@RequestParam(required = false) Map<String, String> allParams) {
+        return empleadoService.getEmpleadosFromFacultad(allParams);
     }
 
     @GetMapping("/{dni}")
-    public EmpleadoFacultad getEmpleadosFromFactultad(@PathVariable String dni) {
-        return empleadoService.getEmpleadoFromFacultadByDni(dni);
+    public ResponseEntity getEmpleadosFromFactultadbyDni(@PathVariable String dni) {
+        return empleadoService.findEmpleadoFromFacultadByDni(dni);
     }
 }

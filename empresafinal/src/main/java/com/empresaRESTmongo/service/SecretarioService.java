@@ -4,7 +4,6 @@ import com.empresaRESTmongo.model.CargoEnum;
 import com.empresaRESTmongo.model.EmpleadoFacultad;
 import com.empresaRESTmongo.model.Secretario;
 import com.empresaRESTmongo.repository.EmpleadoRepository;
-import com.empresafinal.model.JefeDeZona;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,8 +28,8 @@ public class SecretarioService {
         }
     }
 
-    public ResponseEntity findSecretarios(CargoEnum Cargo){
-        return new ResponseEntity(empleadoRepository.findByCargo(Cargo),HttpStatus.OK);
+    public ResponseEntity findSecretarios(CargoEnum Cargo) {
+        return new ResponseEntity(empleadoRepository.findByCargo(Cargo), HttpStatus.OK);
     }
 
     public ResponseEntity<Secretario> insertSecretario(String dni, Secretario secretario) {
@@ -50,7 +49,7 @@ public class SecretarioService {
             } else {
                 return new ResponseEntity<>(HttpStatus.METHOD_NOT_ALLOWED);
             }
-        }else {
+        } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }

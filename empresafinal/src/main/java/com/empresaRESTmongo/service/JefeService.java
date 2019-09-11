@@ -1,7 +1,6 @@
 package com.empresaRESTmongo.service;
 
 import com.empresaRESTmongo.model.CargoEnum;
-import com.empresaRESTmongo.model.Empleado;
 import com.empresaRESTmongo.model.EmpleadoFacultad;
 import com.empresaRESTmongo.model.JefeDeZona;
 import com.empresaRESTmongo.repository.EmpleadoRepository;
@@ -19,19 +18,19 @@ public class JefeService {
     @Autowired
     EmpleadoService empleadoService;
 
-    public ResponseEntity<JefeDeZona> newJefe(JefeDeZona jefeDeZona){
-        if (empleadoRepository.findByDni(jefeDeZona.getDni()) != null){
+    public ResponseEntity<JefeDeZona> newJefe(JefeDeZona jefeDeZona) {
+        if (empleadoRepository.findByDni(jefeDeZona.getDni()) != null) {
             return new ResponseEntity<>(HttpStatus.METHOD_NOT_ALLOWED);
-        } else if (jefeDeZona.getCargo().equals(CargoEnum.JEFE_DE_ZONA)){
-        return new ResponseEntity<>(empleadoRepository.save(jefeDeZona), HttpStatus.CREATED);}
-        else {
+        } else if (jefeDeZona.getCargo().equals(CargoEnum.JEFE_DE_ZONA)) {
+            return new ResponseEntity<>(empleadoRepository.save(jefeDeZona), HttpStatus.CREATED);
+        } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
     public ResponseEntity<JefeDeZona> newJefeFromFacultad(String dni) {
         EmpleadoFacultad empleado = empleadoService.getEmpleadoFromFacultadByDni(dni);
-        if (empleado==null) {
+        if (empleado == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             if (empleadoRepository.findByDni(empleado.getDni()) == null) {
@@ -48,8 +47,8 @@ public class JefeService {
         }
     }
 
-    public ResponseEntity findJefes(CargoEnum Cargo){
-        return new ResponseEntity(empleadoRepository.findByCargo(Cargo),HttpStatus.OK);
+    public ResponseEntity findJefes(CargoEnum Cargo) {
+        return new ResponseEntity(empleadoRepository.findByCargo(Cargo), HttpStatus.OK);
     }
 
     public ResponseEntity<JefeDeZona> insertJefe(String dni, JefeDeZona jefeDeZona) {
@@ -70,7 +69,7 @@ public class JefeService {
             } else {
                 return new ResponseEntity<>(HttpStatus.METHOD_NOT_ALLOWED);
             }
-        }else {
+        } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }

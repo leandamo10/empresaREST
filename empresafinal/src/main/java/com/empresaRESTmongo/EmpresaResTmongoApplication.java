@@ -8,12 +8,12 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 public class EmpresaResTmongoApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(EmpresaResTmongoApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(EmpresaResTmongoApplication.class, args);
+    }
 
-	@Bean
-	public RestTemplate restTemplate(){
-		return new RestTemplate();
-	}
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 }

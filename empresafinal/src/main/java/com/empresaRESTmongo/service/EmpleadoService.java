@@ -95,12 +95,20 @@ public class EmpleadoService {
         }
     }
 
-    public List<EmpleadoFacultad> getEmpleadosFromFacultad(){
-        return facultadCliente.getEmpleadosFromFacultad();
+    public ResponseEntity getEmpleadosFromFacultad(Map<String, String> allParams) {
+        if (allParams.isEmpty()) {
+            return facultadCliente.findEmpleadosFromFacultad();
+        } else {
+            return facultadCliente.findEmpleadosFromFacultadByParams(allParams);
+        }
     }
 
-    public EmpleadoFacultad getEmpleadoFromFacultadByDni(String dni){
-      return facultadCliente.getEmpleadoFromFacultadByDni(dni);
+    public EmpleadoFacultad getEmpleadoFromFacultadByDni(String dni) {
+        return facultadCliente.getEmpleadoFromFacultadByDni(dni);
+    }
+
+    public ResponseEntity findEmpleadoFromFacultadByDni(String dni) {
+        return facultadCliente.findEmpleadoFromFacultadByDni(dni);
     }
 
 }
